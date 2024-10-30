@@ -40,6 +40,17 @@ RSpec.describe User, type: :model do
             end
           end
         end
+
+        describe 'nicknamen存在性の検証' do
+          context 'nicknameが空欄の場合' do
+            let(:nickname) { '' }
+
+            it 'Userオブジェクトは無効である' do
+              expect(user.valid?).to be(false)
+              expect(user.errors[:nickname]).to include("can't be blank")
+            end
+          end
+        end
       end
     end
   end
