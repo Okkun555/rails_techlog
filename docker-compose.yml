@@ -1,0 +1,41 @@
+services:
+  db:
+    image: mysql:8.0
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - type: volume
+        source: mysqldata
+        target: /var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: "Asia/Tokyo"
+    ports:
+      - '3306:3306'
+  webapp:
+    build:
+      context: .
+      dockerfile: ./docker/web/Dockerfile
+    command: bash -c "rm -f tmp/pids/server.pid && ./bin/dev"
+    volumes:
+      - type: bind
+        source: ./src
+        target: /src
+      - type: volume
+        source: gemdata
+        target: /usr/local/bundle
+      - type: volume
+        source: node_modules
+        target: /src/node_modules
+    ports:
+      - "${PORT}:3000"
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+volumes:
+  gemdata:
+  node_modules:
+  mysqldata:
