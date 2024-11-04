@@ -1,10 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Homes', type: :system do
-  before do
-    driven_by(:rack_test)
-  end
-
+RSpec.describe 'Home', type: :system do
   describe 'トップページの検証' do
     it 'Home#top という文字列が表示される' do
       visit '/'

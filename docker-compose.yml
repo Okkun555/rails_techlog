@@ -35,6 +35,10 @@ services:
       - db
     stdin_open: true
     tty: true
+  selenium_chrome:
+    image: seleniarm/standalone-chromium:4.17.0
+    ports:
+      - '4444:4444'
 volumes:
   gemdata:
   node_modules:
