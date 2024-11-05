@@ -3,7 +3,7 @@ require 'selenium-webdriver'
 
 # カスタムドライバーの定義
 Capybara.register_driver :remote_chrome do |app|
-  url = ENV["SELENIUM_DRIVER_URL"]
+  url = ENV.fetch('SELENIUM_DRIVER_URL', nil)
   options = Selenium::WebDriver::Chrome::Options.new
   options.add_argument('no-sandbox')
   options.add_argument('headless')
