@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :system do
+RSpec.describe 'Users', type: :system do
   # ユーザー情報の入力用変数
   let(:email) { 'test@example.com' }
   let(:nickname) { 'テスト太郎' }
