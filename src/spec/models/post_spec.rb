@@ -8,7 +8,7 @@ RSpec.describe Post, type: :model do
   let(:user_id) { @user.id }
 
   describe 'バリデーション検証' do
-    let(:post) { Post.new(title: title, content: content, user_id: user_id)}
+    let(:post) { Post.new(title: title, content: content, user_id: user_id) }
 
     context '正常系' do
       it '有効である' do
